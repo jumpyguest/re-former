@@ -27,11 +27,31 @@
 -->
 
 <%= form_with model: @user do |form| %>
+    <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div>
     <%= form.label :username, "Your username here:" %>
-    <%= form.text_field :username, value: "username1" %><br><br>
+    <%= form.text_field :username, value: "username1" %>
+</div>
+<br>
+<div>
     <%= form.label :email %>
-    <%= form.email_field :email, placeholder: "example@example.com" %><br><br>
+    <%= form.email_field :email, placeholder: "example@example.com" %>
+</div>
+<br>
+<div>
     <%= form.label :password %>
-    <%= form.password_field :password %><br><br>
+    <%= form.password_field :password %>
+</div>
+<br>
     <%= form.submit "Submit" %>
 <% end %>
